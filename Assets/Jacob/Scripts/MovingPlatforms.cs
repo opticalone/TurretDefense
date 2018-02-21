@@ -9,6 +9,8 @@ public class MovingPlatforms : MonoBehaviour {
 
     public int CurrentPoint = 0;
 
+    GameObject player;
+
     void Update()
     {
         if (transform.position != Waypoints[CurrentPoint].transform.position)
@@ -25,5 +27,21 @@ public class MovingPlatforms : MonoBehaviour {
         {
             CurrentPoint = 0;
         }
+    }
+
+    private void OnCollisionEnter(Collision c)
+    {
+        if(c.gameObject.tag == "Player")
+        {
+            player = c.gameObject;
+
+            player.transform.parent = this.transform;
+        }
+    }
+
+    private void OnCollisionExit(Collision c)
+    {
+        player.transform.parent = player.transform;
+        
     }
 }
