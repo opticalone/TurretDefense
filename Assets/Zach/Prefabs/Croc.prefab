@@ -476,9 +476,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c66df188944fdbb43b92b215d649b76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 20353666783682726, guid: a5ab323a8cab41644876f6a159339a3b, type: 2}
-  movementSpeed: 100
+  cam: {fileID: 0}
+  movementSpeed: 20
   maxSpeed: 0
+  jumpStrength: 200
+  ableToJump: 1
+  rayLength: 1.1
 --- !u!135 &135616092551667602
 SphereCollider:
   m_ObjectHideFlags: 1
