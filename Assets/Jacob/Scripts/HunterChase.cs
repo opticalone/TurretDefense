@@ -12,7 +12,7 @@ public class HunterChase : MonoBehaviour
     float gunDistance;
     float viewRange;
     public int stoppingDistance;
-    int targetHealth;
+    //int targetHealth;
     //QuinnGun gun;
     Vector3 fwd;
     public float length;
@@ -69,10 +69,10 @@ public class HunterChase : MonoBehaviour
              agent.stoppingDistance = stoppingDistance;
          }
 
-         if (targetHealth == 0)
-         {
-             agent.stoppingDistance = 0;
-         }
+         //if (targetHealth == 0)
+         //{
+         //    agent.stoppingDistance = 0;
+         //}
 
          //if (distance <= gunDistance)
          //{
