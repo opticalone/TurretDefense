@@ -11,6 +11,14 @@ public class MovingPlatforms : MonoBehaviour {
 
     GameObject player;
 
+    //Rigidbody platformRB;
+   // Rigidbody playerRB;
+
+    //void Start()
+    //{
+    //    platformRB = GetComponent<Rigidbody>();
+    //}
+
     void Update()
     {
         if (transform.position != Waypoints[CurrentPoint].transform.position)
@@ -34,6 +42,9 @@ public class MovingPlatforms : MonoBehaviour {
         if(c.gameObject.tag == "Player")
         {
             player = c.gameObject;
+            //playerRB = player.GetComponent<Rigidbody>();
+
+           // playerRB.velocity = platformRB.velocity;
 
             player.transform.parent = this.transform;
         }
@@ -41,7 +52,7 @@ public class MovingPlatforms : MonoBehaviour {
 
     private void OnCollisionExit(Collision c)
     {
-        player.transform.parent = player.transform;
-        
+        player.transform.parent = null;
+        //playerRB.velocity = playerRB.velocity;
     }
 }
