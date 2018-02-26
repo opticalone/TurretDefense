@@ -902,35 +902,15 @@ Prefab:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1245155768}
-    - target: {fileID: 54131273719832890, guid: 52939b3fdcd5b004d9831b633ad1bea5,
+    - target: {fileID: 136184462988761640, guid: 52939b3fdcd5b004d9831b633ad1bea5,
         type: 2}
-      propertyPath: m_Drag
-      value: 0.71
-      objectReference: {fileID: 0}
-    - target: {fileID: 114673798807978538, guid: 52939b3fdcd5b004d9831b633ad1bea5,
-        type: 2}
-      propertyPath: stoppingDrag
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114673798807978538, guid: 52939b3fdcd5b004d9831b633ad1bea5,
-        type: 2}
-      propertyPath: jumpStrength
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114673798807978538, guid: 52939b3fdcd5b004d9831b633ad1bea5,
-        type: 2}
-      propertyPath: shortHopAvailable
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114673798807978538, guid: 52939b3fdcd5b004d9831b633ad1bea5,
         type: 2}
-      propertyPath: movementSpeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 114673798807978538, guid: 52939b3fdcd5b004d9831b633ad1bea5,
-        type: 2}
-      propertyPath: maxSpeed
-      value: 20
+      propertyPath: rayLength
+      value: 1.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52939b3fdcd5b004d9831b633ad1bea5, type: 2}
