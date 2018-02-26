@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+m_EditorVersion: 2017.3.0f3
+=======
+<<<<<<< HEAD
 m_EditorVersion: 5.5.1f1
 =======
 m_EditorVersion: 2017.3.0f3
+>>>>>>> dev
 >>>>>>> dev
