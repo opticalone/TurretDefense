@@ -11,13 +11,16 @@ public class MovingPlatforms : MonoBehaviour {
 
     GameObject player;
 
+	Component objectCollider;
+
     //Rigidbody platformRB;
    // Rigidbody playerRB;
 
-    //void Start()
-    //{
+    void Start()
+    {
+		objectCollider = GetComponentInChildren<MeshCollider> ();
     //    platformRB = GetComponent<Rigidbody>();
-    //}
+    }
 
     void Update()
     {
