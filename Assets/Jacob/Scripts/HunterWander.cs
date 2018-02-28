@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class HunterWander : MonoBehaviour {
 
     public GameObject target;
-    //public int targetHealth;
     NavMeshAgent agent;
     Vector3 Hunter;
     Vector3 fwd;
