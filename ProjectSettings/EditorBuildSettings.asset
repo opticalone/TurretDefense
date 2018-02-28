@@ -5,12 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Jacob/Scenes/MenuScript.unity
     guid: 17744c1dd8893ab4696b5638dbf72256
-  - enabled: 1
+  - enabled: 0
     path: Assets/Jacob/Scenes/AITestScene.unity
     guid: afc94b755f5ce6a458a1080982e12d14
-  - enabled: 1
+  - enabled: 0
     path: Assets/Jacob/Scenes/MovingPlatforms.unity
     guid: f74459c4f04d19348ada60c893989902
+  - enabled: 1
+    path: Assets/Michael/level0.unity
+    guid: 7dade4253df98cd48a95042d4c50283d

@@ -9,22 +9,7 @@ public class MovingPlatforms : MonoBehaviour {
 
     public int CurrentPoint = 0;
 
-<<<<<<< HEAD
-    GameObject player;
 
-	Component objectCollider;
-
-    //Rigidbody platformRB;
-   // Rigidbody playerRB;
-
-    void Start()
-    {
-		objectCollider = GetComponentInChildren<MeshCollider> ();
-    //    platformRB = GetComponent<Rigidbody>();
-    }
-
-=======
->>>>>>> dev
     void Update()
     {
         if (transform.position != Waypoints[CurrentPoint].transform.position)
