@@ -40,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1001243624250560}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.5, y: 1, z: 1.03}
+  m_LocalPosition: {x: -19.152483, y: 2.1749246, z: -68.63848}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -114,8 +114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  length: 5
-  wanderRadius: 5
+  length: 8
+  wanderRadius: 20
   wanderTimer: 6
 --- !u!114 &114705697773148742
 MonoBehaviour:
@@ -129,9 +129,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseTarget: {fileID: 0}
-  distance: 0
+  distance: 2
   stoppingDistance: 0
-  length: 0
+  length: 8
 --- !u!136 &136980809762691806
 CapsuleCollider:
   m_ObjectHideFlags: 1

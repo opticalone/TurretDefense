@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Jacob/Scenes/MenuScript.unity
     guid: 17744c1dd8893ab4696b5638dbf72256
   - enabled: 1
-    path: Assets/Jacob/Scenes/AITestScene.unity
-    guid: afc94b755f5ce6a458a1080982e12d14
+    path: Assets/Jacob/Scenes/level1.unity
+    guid: 46e89cdec2bee52439daca04d94ae9d2
   - enabled: 1
-    path: Assets/Jacob/Scenes/MovingPlatforms.unity
-    guid: f74459c4f04d19348ada60c893989902
+    path: Assets/Jacob/Scenes/michael -- level build 1.unity
+    guid: a419bdebf3a8967428d1d3119bb62707
