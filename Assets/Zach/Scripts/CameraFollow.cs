@@ -42,13 +42,14 @@ public class CameraFollow : MonoBehaviour
         else if (keyboardOnly)
         {
             mouseRotation.x = xAngle;
-            if (!player.GetComponent<PlayerController>().isOnLedge)
+            if (!player.GetComponent<PlayerController>().onLedge)
             {
                 mouseRotation.y += Input.GetAxis("Horizontal") * rotationSpeed;
             }
-            else if (player.GetComponent<PlayerController>().isOnLedge)
+            else if (player.GetComponent<PlayerController>().onLedge)
             {
-                player.GetComponent<Rigidbody>().AddForce(Vector3.right * Input.GetAxis("Horizontal") * player.GetComponent<PlayerController>().movementSpeed / 2);
+                player.GetComponent<Rigidbody>().AddForce(Vector3.right * Input.GetAxis("Horizontal") * player.GetComponent<PlayerController>().movementSpeed);
+                //mouseRotation = new Vector3(transform.position + player.hit.point.normalized);
             }
         }
         
