@@ -4907,7 +4907,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4349466908994110, guid: 52939b3fdcd5b004d9831b633ad1bea5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.49
+      value: 1.15
       objectReference: {fileID: 0}
     - target: {fileID: 4349466908994110, guid: 52939b3fdcd5b004d9831b633ad1bea5, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4915,19 +4915,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4349466908994110, guid: 52939b3fdcd5b004d9831b633ad1bea5, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4349466908994110, guid: 52939b3fdcd5b004d9831b633ad1bea5, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.8783897
       objectReference: {fileID: 0}
     - target: {fileID: 4349466908994110, guid: 52939b3fdcd5b004d9831b633ad1bea5, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4349466908994110, guid: 52939b3fdcd5b004d9831b633ad1bea5, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.47794527
       objectReference: {fileID: 0}
     - target: {fileID: 4349466908994110, guid: 52939b3fdcd5b004d9831b633ad1bea5, type: 2}
       propertyPath: m_RootOrder
@@ -4938,6 +4938,10 @@ Prefab:
       propertyPath: cam
       value: 
       objectReference: {fileID: 270839762}
+    - target: {fileID: 4349466908994110, guid: 52939b3fdcd5b004d9831b633ad1bea5, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 122.897
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52939b3fdcd5b004d9831b633ad1bea5, type: 2}
   m_IsPrefabParent: 0
@@ -8012,7 +8016,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh20836
+  m_Name: pb_Mesh19404
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -14644,7 +14648,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh20762
+  m_Name: pb_Mesh19330
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -15402,7 +15406,12 @@ Prefab:
     - target: {fileID: 114172608697245118, guid: a5ab323a8cab41644876f6a159339a3b,
         type: 2}
       propertyPath: xAngle
-      value: 13.46
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 114172608697245118, guid: a5ab323a8cab41644876f6a159339a3b,
+        type: 2}
+      propertyPath: keyboardOnly
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a5ab323a8cab41644876f6a159339a3b, type: 2}
