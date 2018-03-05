@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class GemSpin : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
+	public float rotationSpeed = 3.0f; 
+
+
+
 	// Update is called once per frame
 	void Update () {
-		transform.Rotate(new Vector3(0f, 3f, 0f));
+		transform.Rotate(new Vector3(0f, rotationSpeed, 0f));
 
 	}
 }
