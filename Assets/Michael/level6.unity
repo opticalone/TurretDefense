@@ -28853,17 +28853,9 @@ MonoBehaviour:
     areaError: 15
   asset_guid: 
   dontDestroyMeshOnDelete: 0
-  m_selectedFaces: 03020000
-  m_SelectedEdges:
-  - x: 2074
-    y: 2075
-  - x: 2076
-    y: 2074
-  - x: 2075
-    y: 2077
-  - x: 2077
-    y: 2076
-  m_selectedTriangles: 1a0800001b0800001c0800001b0800001d0800001c080000
+  m_selectedFaces: 
+  m_SelectedEdges: []
+  m_selectedTriangles: 
 --- !u!33 &1232723743
 MeshFilter:
   m_ObjectHideFlags: 0
