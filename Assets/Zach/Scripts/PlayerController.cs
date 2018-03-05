@@ -18,14 +18,13 @@ public class PlayerController : MonoBehaviour {
     public float shortHopMultiplier = 2f;
     public bool shortHopAvailable;
     public float stoppingDrag;
-    public bool isOnLedge;
+    public bool onLedge;
     public int gems;
 
     private bool jumpQueued;
-    private bool babyJumpQueued;
 
     //jump raycast
-    private RaycastHit hit; //detecting raycast collision
+    public RaycastHit hit; //detecting raycast collision
     public float rayLength; 
 
 	// Use this for initialization
@@ -48,14 +47,20 @@ public class PlayerController : MonoBehaviour {
             rb.useGravity = false;
             rb.velocity = Vector3.zero;
             sphereCastHit = true;
-            ableToJump = true;
+            onLedge = true;
             Debug.Log("Hit infront of me");
-
+            //find direction of the edge
+            Vector3 vecToLookAt = hit.point - this.transform.position;
+            //Vector3 reflectVec = Vector3.Reflect(incomingVec, hit.normal);
+            Debug.DrawLine(this.transform.position, (transform.position + sphereHit.point.normalized), Color.red);
+            transform.LookAt(transform.position + sphereHit.point.normalized);
+            cam.transform.LookAt(transform.position + sphereHit.point.normalized);
+            //Debug.DrawRay(hit.point, reflectVec, Color.green);
         } else
         {
             sphereCastHit = false;
             rb.useGravity = true;
-            ableToJump = false;
+            onLedge = false;
         }
 
 
@@ -81,15 +86,15 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-        if (ableToJump)
-        {
-            //using a bool so that all physics updates are in FixedUpdate
-            if (Input.GetAxis("Jump") == 1)
-            {
-                babyJumpQueued = true;
-                ableToJump = false;
-            }
-        }
+        //if (ableToJump)
+        //{
+        //    //using a bool so that all physics updates are in FixedUpdate
+        //    if (Input.GetAxis("Jump") == 1)
+        //    {
+        //        ableToJump = false;
+        //        ledgeClimbing = true;
+        //    }
+        //}
     }
 
     void FixedUpdate()
@@ -109,10 +114,6 @@ public class PlayerController : MonoBehaviour {
         if (horizontal != 0 || vertical != 0 )
         {
             Vector3 desiredVelocity = targetDirection * movementSpeed;
-            if (!isOnLedge)
-            {
-                rb.AddForce(desiredVelocity);
-            }
             if (rb.velocity.x >= maxSpeed)
             {
                 Vector3 temp = new Vector3(maxSpeed, rb.velocity.y, rb.velocity.z);
@@ -123,6 +124,11 @@ public class PlayerController : MonoBehaviour {
                 Vector3 temp = new Vector3(rb.velocity.x, rb.velocity.y, maxSpeed);
                 rb.velocity = temp;
             }
+            if (!onLedge)
+            {
+                rb.AddForce(desiredVelocity);
+            }
+            
         }
 
         else //less slide on stop
@@ -137,7 +143,7 @@ public class PlayerController : MonoBehaviour {
             rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
             jumpQueued = false;
         }
-        
+
         //Crisper Jump
         if (rb.velocity.y < 0 && rb.useGravity)
         {
