@@ -25,10 +25,13 @@ public class PlayerController : MonoBehaviour {
 
     //jump raycast
     public RaycastHit hit; //detecting raycast collision
-    public float rayLength; 
+    public float rayLength;
 
-	// Use this for initialization
-	void Start () {
+    //ledge grab
+    public RaycastHit sphereHit;
+
+    // Use this for initialization
+    void Start () {
         rb = GetComponent<Rigidbody>();
         jumpQueued = false;
         ableToJump = false;
@@ -41,27 +44,29 @@ public class PlayerController : MonoBehaviour {
         vertical = Input.GetAxis("Vertical");
         jump = Input.GetAxis("Jump");
 
-        RaycastHit sphereHit;
-        if(Physics.SphereCast(transform.position,.2f, transform.forward,out sphereHit,2,1 << 8))
-        {
-            rb.useGravity = false;
-            rb.velocity = Vector3.zero;
-            sphereCastHit = true;
-            onLedge = true;
-            Debug.Log("Hit infront of me");
-            //find direction of the edge
-            Vector3 vecToLookAt = hit.point - this.transform.position;
-            //Vector3 reflectVec = Vector3.Reflect(incomingVec, hit.normal);
-            Debug.DrawLine(this.transform.position, (transform.position + sphereHit.point.normalized), Color.red);
-            transform.LookAt(transform.position + sphereHit.point.normalized);
-            cam.transform.LookAt(transform.position + sphereHit.point.normalized);
-            //Debug.DrawRay(hit.point, reflectVec, Color.green);
-        } else
-        {
-            sphereCastHit = false;
-            rb.useGravity = true;
-            onLedge = false;
-        }
+
+        //if (Physics.SphereCast(transform.position, .2f, transform.forward, out sphereHit, 2, 1 << 8))
+        //{
+        //    rb.useGravity = false;
+        //    rb.velocity = Vector3.zero;
+        //    sphereCastHit = true;
+        //    onLedge = true;
+        //    Debug.Log("Hit infront of me");
+        //    find direction of the edge
+
+        //    Vector3 vecToLookAt = sphereHit.point - this.transform.position;
+        //    Vector3 reflectVec = Vector3.Reflect(incomingVec, hit.normal);
+        //    Debug.DrawLine(this.transform.position, (transform.position + (vecToLookAt.normalized * 10)), Color.red);
+        //    transform.LookAt(transform.position + sphereHit.point.normalized);
+        //    cam.transform.LookAt(transform.position + vecToLookAt.normalized);
+        //    Debug.DrawRay(hit.point, reflectVec, Color.green);
+        //}
+        //else
+        //{
+        //    sphereCastHit = false;
+        //    rb.useGravity = true;
+        //    onLedge = false;
+        //}
 
 
 
@@ -108,10 +113,14 @@ public class PlayerController : MonoBehaviour {
         Vector3 relativePos = -(cam.transform.position - transform.position);
         relativePos.y = 0;
         Quaternion rotation = Quaternion.LookRotation(relativePos);
-        transform.rotation = rotation;
+        if(!onLedge)
+        {
+            transform.rotation = rotation;
+        }
+        
 
         //movement
-        if (horizontal != 0 || vertical != 0 )
+        if (horizontal != 0 || vertical != 0)
         {
             Vector3 desiredVelocity = targetDirection * movementSpeed;
             if (rb.velocity.x >= maxSpeed)
@@ -128,7 +137,7 @@ public class PlayerController : MonoBehaviour {
             {
                 rb.AddForce(desiredVelocity);
             }
-            
+
         }
 
         else //less slide on stop

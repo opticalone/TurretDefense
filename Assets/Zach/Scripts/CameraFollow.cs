@@ -49,7 +49,7 @@ public class CameraFollow : MonoBehaviour
             else if (player.GetComponent<PlayerController>().onLedge)
             {
                 player.GetComponent<Rigidbody>().AddForce(Vector3.right * Input.GetAxis("Horizontal") * player.GetComponent<PlayerController>().movementSpeed);
-                //mouseRotation = new Vector3(transform.position + player.hit.point.normalized);
+                mouseRotation.y = 0;
             }
         }
         
