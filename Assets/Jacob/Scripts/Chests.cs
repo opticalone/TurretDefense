@@ -9,19 +9,32 @@ public class Chests : MonoBehaviour {
     public GameObject gems;
 
     public int GemsToSpawn = 5;
-    private int modelNumber;
 
     void Start()
     {
-        modelNumber = 1;
         closedChest.SetActive(true);
         openChest.SetActive(false);
     }
 
     public void OpenChest()
     {
-     closedChest.SetActive(false);
-     openChest.SetActive(true);
-     
+        closedChest.SetActive(false);
+        openChest.SetActive(true);
+        for (int i = 0; i < GemsToSpawn; i++)
+        {
+            GameObject spawnedGem = Instantiate(gems);
+            spawnedGem.transform.position = transform.position + (Vector3.up * i);
+        }
+       
     }
+    public bool editorOpenChest;
+    void Update()
+    {
+        if(editorOpenChest)
+        {
+            editorOpenChest = false;
+            OpenChest();
+        }
+    }
+
 }
