@@ -13,27 +13,30 @@ public class PlayerController : MonoBehaviour {
     public float movementSpeed;
     public float maxSpeed;
     public float jumpStrength;
-    public bool ableToJump;
     public float fallMultiplier = 2.5f;
     public float shortHopMultiplier = 2f;
     public bool shortHopAvailable;
     public float stoppingDrag;
-    public bool onLedge;
     public int gems;
+    public int slamTimerAmount;
+    public float slamSpeed;
 
     private bool jumpQueued;
+    private bool slamQueued;
+    private int slamTimer;
 
     //jump raycast
     public RaycastHit hit; //detecting raycast collision
-    public float rayLength; 
+    public float rayLength;
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
         rb = GetComponent<Rigidbody>();
         jumpQueued = false;
-        ableToJump = false;
+        slamQueued = false;
 	}
-    bool sphereCastHit;
+    //bool sphereCastHit;
 	// Update is called once per frame
 	void Update () {
 
@@ -41,38 +44,10 @@ public class PlayerController : MonoBehaviour {
         vertical = Input.GetAxis("Vertical");
         jump = Input.GetAxis("Jump");
 
-        RaycastHit sphereHit;
-        if(Physics.SphereCast(transform.position,.2f, transform.forward,out sphereHit,2,1 << 8))
-        {
-            rb.useGravity = false;
-            rb.velocity = Vector3.zero;
-            sphereCastHit = true;
-            onLedge = true;
-            Debug.Log("Hit infront of me");
-            //find direction of the edge
-            Vector3 vecToLookAt = hit.point - this.transform.position;
-            //Vector3 reflectVec = Vector3.Reflect(incomingVec, hit.normal);
-            Debug.DrawLine(this.transform.position, (transform.position + sphereHit.point.normalized), Color.red);
-            transform.LookAt(transform.position + sphereHit.point.normalized);
-            cam.transform.LookAt(transform.position + sphereHit.point.normalized);
-            //Debug.DrawRay(hit.point, reflectVec, Color.green);
-        } else
-        {
-            sphereCastHit = false;
-            rb.useGravity = true;
-            onLedge = false;
-        }
-
-
-
-
-
-        //Drawing Raycast for player's jump
+        //Drawing Raycast for player's jump to be seen in scene view
         Debug.DrawRay(transform.position, transform.up * -rayLength, Color.red, 0);
 
         //Using Raycast to check if the object below it within a certain range is able to be jumped off of
-
-       //jumpCast = Physics.Raycast(transform.position, transform.up * -1, out hit, rayLength);
         if (Physics.Raycast(transform.position, transform.up * -1, out hit, rayLength))
         {
             if (hit.collider.gameObject.layer == 8)
@@ -81,20 +56,16 @@ public class PlayerController : MonoBehaviour {
                 if (Input.GetAxis("Jump") == 1)
                 {
                     jumpQueued = true;
-                    ableToJump = false;
                 }
             }
+            slamQueued = false;
         }
-
-        //if (ableToJump)
-        //{
-        //    //using a bool so that all physics updates are in FixedUpdate
-        //    if (Input.GetAxis("Jump") == 1)
-        //    {
-        //        ableToJump = false;
-        //        ledgeClimbing = true;
-        //    }
-        //}
+        // pauses in air and slams downward at an increased speed than gravity  
+        else if (Input.GetKeyDown("space") && !slamQueued)
+        {
+            slamQueued = true;
+            slamTimer = slamTimerAmount;
+        }
     }
 
     void FixedUpdate()
@@ -109,11 +80,12 @@ public class PlayerController : MonoBehaviour {
         relativePos.y = 0;
         Quaternion rotation = Quaternion.LookRotation(relativePos);
         transform.rotation = rotation;
+        
 
         //movement
-        if (horizontal != 0 || vertical != 0 )
+        if (horizontal != 0 || vertical != 0)
         {
-            Vector3 desiredVelocity = targetDirection * movementSpeed;
+            Vector3 desiredDir = targetDirection * movementSpeed;
             if (rb.velocity.x >= maxSpeed)
             {
                 Vector3 temp = new Vector3(maxSpeed, rb.velocity.y, rb.velocity.z);
@@ -124,11 +96,8 @@ public class PlayerController : MonoBehaviour {
                 Vector3 temp = new Vector3(rb.velocity.x, rb.velocity.y, maxSpeed);
                 rb.velocity = temp;
             }
-            if (!onLedge)
-            {
-                rb.AddForce(desiredVelocity);
-            }
-            
+            rb.AddForce(desiredDir);
+
         }
 
         else //less slide on stop
@@ -153,18 +122,22 @@ public class PlayerController : MonoBehaviour {
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (shortHopMultiplier) * Time.deltaTime;
         }
+        if (slamQueued) Slam();
     }
 
-    void OnDrawGizmos()
+    //
+    void Slam()
     {
-        if (sphereCastHit)
-            Gizmos.color = Color.blue;
-        else Gizmos.color = Color.red;
-        for(int i =0; i < 2; i++)
+        if (slamTimer > 0)
         {
-            Gizmos.DrawWireSphere(transform.position + (transform.forward * i), .5f);
+            slamTimer--;
+            rb.useGravity = false;
+            rb.velocity = Vector3.zero;
         }
-       
+        else
+        {
+            rb.useGravity = true;
+            rb.AddForce(Vector3.down * slamSpeed, ForceMode.Impulse);
+        }
     }
-
 }  
