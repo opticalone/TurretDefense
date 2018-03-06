@@ -9,9 +9,6 @@ public class MovingPlatforms : MonoBehaviour {
 
     public int CurrentPoint = 0;
 
-
-    GameObject player;
-
 	Component objectCollider;
 
     //Rigidbody platformRB;

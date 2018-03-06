@@ -533,6 +533,59 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 614949438}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &911907610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 911907613}
+  - component: {fileID: 911907612}
+  - component: {fileID: 911907611}
+  m_Layer: 0
+  m_Name: Respawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &911907611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 911907610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec11bcb42ed5319409431603f98c3a0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &911907612
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 911907610}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1000, y: 1, z: 1000}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &911907613
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 911907610}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1245155768 stripped
 Camera:
   m_PrefabParentObject: {fileID: 20353666783682726, guid: a5ab323a8cab41644876f6a159339a3b,
@@ -951,6 +1004,31 @@ Prefab:
         type: 2}
       propertyPath: babyJumpMultiplier
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114673798807978538, guid: 52939b3fdcd5b004d9831b633ad1bea5,
+        type: 2}
+      propertyPath: fallMultiplier
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114673798807978538, guid: 52939b3fdcd5b004d9831b633ad1bea5,
+        type: 2}
+      propertyPath: slamTimerAmount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114673798807978538, guid: 52939b3fdcd5b004d9831b633ad1bea5,
+        type: 2}
+      propertyPath: slamSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114673798807978538, guid: 52939b3fdcd5b004d9831b633ad1bea5,
+        type: 2}
+      propertyPath: movementSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114673798807978538, guid: 52939b3fdcd5b004d9831b633ad1bea5,
+        type: 2}
+      propertyPath: maxSpeed
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52939b3fdcd5b004d9831b633ad1bea5, type: 2}

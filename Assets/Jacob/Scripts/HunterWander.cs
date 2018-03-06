@@ -14,7 +14,7 @@ public class HunterWander : MonoBehaviour {
     public float wanderRadius;
     public float wanderTimer;
 
-    Transform Target;
+    //Transform Target;
     float timer;
 
     

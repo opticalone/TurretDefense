@@ -22,7 +22,7 @@ public class HunterChase : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        GameObject Hunter = GameObject.Find("Enemie");
+        GameObject Hunter = GameObject.Find("Enemy");
         hunterWander = Hunter.GetComponent<HunterWander>();
         //gun = Hunter.GetComponent<QuinnGun>();
         chaseTarget = hunterWander.target;
@@ -68,17 +68,6 @@ public class HunterChase : MonoBehaviour
          {
              agent.stoppingDistance = stoppingDistance;
          }
-
-         //if (targetHealth == 0)
-         //{
-         //    agent.stoppingDistance = 0;
-         //}
-
-         //if (distance <= gunDistance)
-         //{
-         //    QuinnGun Fire = gameObject.GetComponent<QuinnGun>();
-         //    gun.Fire();
-         //}
 
          if (distance > viewRange || chaseTarget == null)
          {

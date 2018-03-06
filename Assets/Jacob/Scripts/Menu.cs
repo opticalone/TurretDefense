@@ -20,12 +20,6 @@ public class Menu : MonoBehaviour{
         SceneManager.LoadScene(0);
     }
 
-    public void NextLevel()
-    {
-        Scene sceneLoaded = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(sceneLoaded.buildIndex + 1);
-    }
-
     public void RestartLevel()
     {
         Scene currentScene = SceneManager.GetActiveScene();

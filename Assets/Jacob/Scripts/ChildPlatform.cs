@@ -17,7 +17,7 @@ public class ChildPlatform : MonoBehaviour {
         }
     }
 
-    private void OnCollisionExit(Collision c)
+      private void OnCollisionExit(Collision c)
     {
         player.transform.parent = null;
     }
