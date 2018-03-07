@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour {
     public float shortHopMultiplier = 2f;
     public bool shortHopAvailable;
     public float stoppingDrag;
-    public int gems;
+    public static int gemsTotal;
     public int slamTimerAmount;
     public float slamSpeed;
 
