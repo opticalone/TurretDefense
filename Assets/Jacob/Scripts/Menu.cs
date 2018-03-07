@@ -17,7 +17,7 @@ public class Menu : MonoBehaviour{
 
     public void BackToMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void RestartLevel()
