@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour {
     public static int gemsTotal;
     public int slamTimerAmount;
     public float slamSpeed;
+    public bool isSlamming;
     public AnimationCurve brakeCurve;
 
     private bool jumpQueued;
@@ -71,7 +72,7 @@ public class PlayerController : MonoBehaviour {
             }
             slamQueued = false;
         }
-        // pauses in air and slams downward at an increased speed than gravity  
+        // pauses in air and slams downward at an increased speed than gravity
         else if (Input.GetKeyDown("space") && !slamQueued)
         {
             slamQueued = true;
@@ -126,6 +127,7 @@ public class PlayerController : MonoBehaviour {
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (shortHopMultiplier) * Time.deltaTime;
         }
+        isSlamming = false;
         if (slamQueued) Slam();
     }
 
@@ -137,11 +139,13 @@ public class PlayerController : MonoBehaviour {
             slamTimer--;
             rb.useGravity = false;
             rb.velocity = Vector3.zero;
+            isSlamming = true;
         }
         else
         {
             rb.useGravity = true;
             rb.AddForce(Vector3.down * slamSpeed, ForceMode.Impulse);
+            isSlamming = true;
         }
     }
 	void OnTriggerEnter(Collider other) 

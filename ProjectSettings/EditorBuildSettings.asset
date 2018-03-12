@@ -4,26 +4,4 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-<<<<<<< HEAD
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Michael/level9(pancake).unity
-    guid: b02566b9877a6fa43bb8502139eab2b8
-  - enabled: 1
-    path: Assets/Michael/level_0.unity
-    guid: 7dade4253df98cd48a95042d4c50283d
-  - enabled: 1
-    path: Assets/Michael/level_01.unity
-    guid: 9e34b2e22d027f84b9d2807e80895c5a
-  - enabled: 1
-    path: Assets/Michael/level_02.unity
-    guid: f6e95f36f2bb9084c86dad5c16cd67a8
-  - enabled: 1
-    path: Assets/Michael/level_03.unity
-    guid: b5a155d1eac44b248a995b1609579887
-  - enabled: 1
-    path: Assets/Michael/level_04.unity
-    guid: 8704140c1464da24e9f4840b4801e8ee
-=======
   m_Scenes: []
->>>>>>> dev
