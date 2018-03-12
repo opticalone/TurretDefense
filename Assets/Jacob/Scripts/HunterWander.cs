@@ -17,7 +17,6 @@ public class HunterWander : MonoBehaviour {
     //Transform Target;
     float timer;
 
-    
 
 	void Start () {
         agent = GetComponent<NavMeshAgent>();
@@ -26,17 +25,17 @@ public class HunterWander : MonoBehaviour {
         timer = wanderTimer;
         target = null;
 	}
+
     public static Vector3 RandomNavSphere(Vector3 origin, float distance, int layermask)
     {
         Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * distance;
         randomDirection += origin;
         NavMeshHit navHit;
 
-        NavMesh.SamplePosition(randomDirection, out navHit, distance, -1/*, layermask*/);
+        NavMesh.SamplePosition(randomDirection, out navHit, distance, -1);
 
         return navHit.position;
     }
-
 
     void Update () {
         timer += Time.deltaTime;
@@ -59,7 +58,6 @@ public class HunterWander : MonoBehaviour {
                 {
                     // Add Behavior when target seen
                     target = hit.collider.gameObject;
-                   // targetHealth = target.GetComponent<Health>().CurrentHP;
                     GetComponent<HunterChase>().enabled = true;
                     GetComponent<HunterWander>().enabled = false;
                     Debug.Log("Target Detected");

@@ -4,6 +4,7 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
+<<<<<<< HEAD
   m_Scenes:
   - enabled: 1
     path: Assets/Michael/level9(pancake).unity
@@ -23,3 +24,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Michael/level_04.unity
     guid: 8704140c1464da24e9f4840b4801e8ee
+=======
+  m_Scenes: []
+>>>>>>> dev

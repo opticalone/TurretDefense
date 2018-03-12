@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour {
 
     public Camera cam;
     public float movementSpeed;
-    public float maxSpeed;
     public float jumpStrength;
     public float fallMultiplier = 2.5f;
     public float shortHopMultiplier = 2f;
@@ -21,6 +20,7 @@ public class PlayerController : MonoBehaviour {
     public static int gemsTotal;
     public int slamTimerAmount;
     public float slamSpeed;
+    public AnimationCurve brakeCurve;
 
     private bool jumpQueued;
     private bool slamQueued;
@@ -35,8 +35,6 @@ public class PlayerController : MonoBehaviour {
 
 	public int pancakes;
 
-
-
     //jump raycast
     public RaycastHit hit; //detecting raycast collision
     public float rayLength;
@@ -47,6 +45,7 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         jumpQueued = false;
         slamQueued = false;
+      
 	}
     //bool sphereCastHit;
 	// Update is called once per frame
@@ -79,7 +78,7 @@ public class PlayerController : MonoBehaviour {
             slamTimer = slamTimerAmount;
         }
     }
-
+    float brakeTime;
     void FixedUpdate()
     {
         //find movement direction
@@ -92,31 +91,24 @@ public class PlayerController : MonoBehaviour {
         relativePos.y = 0;
         Quaternion rotation = Quaternion.LookRotation(relativePos);
         transform.rotation = rotation;
-        
+
 
         //movement
         if (horizontal != 0 || vertical != 0)
         {
             Vector3 desiredDir = targetDirection * movementSpeed;
-            if (rb.velocity.x >= maxSpeed)
-            {
-                Vector3 temp = new Vector3(maxSpeed, rb.velocity.y, rb.velocity.z);
-                rb.velocity = temp;
-            }
-            if (rb.velocity.z >= maxSpeed)
-            {
-                Vector3 temp = new Vector3(rb.velocity.x, rb.velocity.y, maxSpeed);
-                rb.velocity = temp;
-            }
-            rb.AddForce(desiredDir);
-
+            desiredDir.y = rb.velocity.y;
+            rb.velocity = desiredDir;
         }
-
         else //less slide on stop
         {
+            brakeTime += Time.deltaTime;
             Vector3 temp = new Vector3(-rb.velocity.x, 0f, -rb.velocity.z);
-            rb.AddForce(temp * stoppingDrag);
+            var extraBrake = brakeCurve.Evaluate(brakeTime);
+            rb.AddForce(temp * stoppingDrag + (temp * extraBrake));
         }
+
+        Debug.Log(rb.velocity);
 
         //jump
         if (jumpQueued)
