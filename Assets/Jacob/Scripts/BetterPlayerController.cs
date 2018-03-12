@@ -4,36 +4,36 @@ using UnityEngine;
 
 public class BetterPlayerController : MonoBehaviour {
 
-    private CharacterController controller;
+    //public variables
+    public float walkspeed;
 
-    private float verticalVelocity;
-    private float gravity = 14.0f;
-    public float jumpForce = 10.0f;
+    //private variables
+    Rigidbody rb;
+    Vector3 moveDirection;
 
-    private void Start()
+    void Awake()
     {
-        controller = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
-        if (controller.isGrounded)
-        {
-            verticalVelocity = -gravity * Time.deltaTime;
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                verticalVelocity = jumpForce;
-            }
-            else
-            {
-                verticalVelocity -= gravity * Time.deltaTime;
-            }
+        float horizontalMovement = Input.GetAxisRaw("Horizontal");
+        float verticalMovement = Input.GetAxisRaw("Vertical");
 
-            Vector3 moveVector = new Vector3(0, verticalVelocity, 0);
-            moveVector.x = Input.GetAxis("Horizontal") * 5.0f;
-            moveVector.y = verticalVelocity;
-            moveVector.z = Input.GetAxis("Vertical") * 5.0f;
-            controller.Move(moveVector * Time.deltaTime);
-        }
+        moveDirection = (horizontalMovement * transform.right + verticalMovement * transform.forward).normalized;
+    }
+
+    void FixedUpdate()
+    {
+        Move();
+    }
+
+    void Move()
+    {
+        Vector3 yVelFix = new Vector3(0, rb.velocity.y, 0);
+        rb.velocity = moveDirection * walkspeed * Time.deltaTime;
+        rb.velocity += yVelFix;
     }
 }
