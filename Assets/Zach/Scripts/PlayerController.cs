@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -16,7 +17,7 @@ public class PlayerController : MonoBehaviour {
     public float shortHopMultiplier = 2f;
     public bool shortHopAvailable;
     public float stoppingDrag;
-    public static int gems;
+    public static int gemsTotal;
     public int slamTimerAmount;
     public float slamSpeed;
     public AnimationCurve brakeCurve;
@@ -24,7 +25,16 @@ public class PlayerController : MonoBehaviour {
     private bool jumpQueued;
     private bool slamQueued;
     private int slamTimer;
-    
+
+	//UI for gem pick up
+
+	public Text GemCount;
+
+
+	//pancakes
+
+	public int pancakes;
+
     //jump raycast
     public RaycastHit hit; //detecting raycast collision
     public float rayLength;
@@ -134,4 +144,13 @@ public class PlayerController : MonoBehaviour {
             rb.AddForce(Vector3.down * slamSpeed, ForceMode.Impulse);
         }
     }
+	void OnTriggerEnter(Collider other) 
+	{
+		if (other.gameObject.CompareTag ("Gem"))
+		{
+			gemsTotal++;
+			GemCount.text = gemsTotal.ToString ();
+			other.gameObject.SetActive (false);
+		}
+	}
 }  

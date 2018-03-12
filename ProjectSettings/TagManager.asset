@@ -7,6 +7,7 @@ TagManager:
   - Hunter
   - Enemie
   - Lava
+  - Gem
   layers:
   - Default
   - TransparentFX
