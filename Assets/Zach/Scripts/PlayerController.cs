@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour {
     public float strafeSpeed;
     public AnimationCurve brakeCurve;
     public bool devJump;
+    public GameObject Gravestone;
 
     private bool jumpQueued;
     private bool slamQueued;
@@ -281,5 +282,22 @@ public class PlayerController : MonoBehaviour {
 			GemCount.text = gemsTotal.ToString ();
 			other.gameObject.SetActive (false);
 		}
+        if (other.gameObject.CompareTag("Enemie"))
+        {
+            if (isAttacking)
+            {
+                Destroy(other.gameObject);
+            }
+            else if (gemsTotal > 0)
+            {
+                gemsTotal = 0;
+            }
+            else if (gemsTotal == 0)
+            {
+                Gravestone.transform.position = gameObject.transform.position;
+                Gravestone.transform.position = new Vector3 (Gravestone.transform.position.x, Gravestone.transform.position.y - 1f, Gravestone.transform.position.z);
+                gameObject.SetActive(false);
+            }
+        }
 	}
 }  
