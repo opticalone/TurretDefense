@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class EnemyHealth : MonoBehaviour {
 
     public int MaxHealth = 1;
-    int Health;
+    public static int Health;
 	
     void Start()
     {
