@@ -28,6 +28,9 @@ public class PlayerController : MonoBehaviour {
     public float strafeSpeed;
     public AnimationCurve brakeCurve;
     public bool devJump;
+    public GameObject Gravestone;
+    public GameObject gems;
+    public float gemSpawnRadius;
 
     private bool jumpQueued;
     private bool slamQueued;
@@ -165,7 +168,7 @@ public class PlayerController : MonoBehaviour {
             rb.AddForce(temp * stoppingDrag + (temp * extraBrake));
         }
 
-        Debug.Log(rb.velocity);
+        //Debug.Log(rb.velocity);
 
         //jump
         if (jumpQueued)
@@ -281,5 +284,29 @@ public class PlayerController : MonoBehaviour {
 			GemCount.text = gemsTotal.ToString ();
 			other.gameObject.SetActive (false);
 		}
+        if (other.gameObject.CompareTag("Enemie"))
+        {
+            if (isAttacking)
+            {
+                Destroy(other.gameObject);
+            }
+            else if (gemsTotal > 0)
+            {
+                for (int i = gemsTotal; i > 0; i--)
+                {
+                    GameObject spawnedGem = Instantiate(gems);
+                    Vector3 temp = new Vector3(transform.position.x + Random.Range(gemSpawnRadius, gemSpawnRadius), transform.position.y, transform.position.z + Random.Range(gemSpawnRadius, gemSpawnRadius));
+                    spawnedGem.transform.position = temp;
+                }
+                gemsTotal = 0;
+                GemCount.text = gemsTotal.ToString();
+            }
+            else if (gemsTotal == 0)
+            {
+                Gravestone.transform.position = gameObject.transform.position;
+                Gravestone.transform.position = new Vector3 (Gravestone.transform.position.x, Gravestone.transform.position.y - 1f, Gravestone.transform.position.z);
+                gameObject.SetActive(false);
+            }
+        }
 	}
 }  
