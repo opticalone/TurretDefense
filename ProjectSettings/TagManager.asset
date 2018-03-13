@@ -8,6 +8,7 @@ TagManager:
   - Enemie
   - Lava
   - Gem
+  - Pancake
   layers:
   - Default
   - TransparentFX
