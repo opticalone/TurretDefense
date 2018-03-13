@@ -166,7 +166,7 @@ public class PlayerController : MonoBehaviour {
             rb.AddForce(temp * stoppingDrag + (temp * extraBrake));
         }
 
-        Debug.Log(rb.velocity);
+        //Debug.Log(rb.velocity);
 
         //jump
         if (jumpQueued)
