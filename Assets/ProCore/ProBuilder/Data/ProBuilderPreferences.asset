@@ -15,6 +15,7 @@ MonoBehaviour:
   - pbIconGUI
   - pb_TorusUsesInnerOuterMethod
   - pbGenerateUV2PerObject
+  - pbUVMaterialPreview
   m_Int_keys:
   - pbHandleAlignment
   - pbDefaultEditLevel
@@ -28,8 +29,8 @@ MonoBehaviour:
   - pbCurrentMaterialPalette
   m_Color_keys: []
   m_Material_keys: []
-  m_Bool_values: 000100
-  m_Int_values: 00000000040000000200000000000000
+  m_Bool_values: 00010000
+  m_Int_values: 00000000010000000200000001000000
   m_Float_values:
   - 0
   - 0
