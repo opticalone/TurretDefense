@@ -12292,7 +12292,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh20770
+  m_Name: pb_Mesh-305372
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -12654,7 +12654,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 455894517}
   movementSpeed: 20
-  maxSpeed: 20
   jumpStrength: 10
   fallMultiplier: 2.5
   shortHopMultiplier: 2
@@ -12662,6 +12661,30 @@ MonoBehaviour:
   stoppingDrag: 0
   slamTimerAmount: 0
   slamSpeed: 0
+  brakeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.8604431
+      value: 0.9690611
+      inSlope: -0.09319295
+      outSlope: -0.09319295
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.9874878
+      value: -0.1875
+      inSlope: -3.7564728
+      outSlope: -3.7564728
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
   rayLength: 1.1
 --- !u!1 &544222872
 GameObject:
@@ -14255,7 +14278,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4647080020451226, guid: d87808cbde6414444a49a0d44a1e6f73, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 23216372441165080, guid: d87808cbde6414444a49a0d44a1e6f73,
         type: 2}
@@ -27708,7 +27731,7 @@ Transform:
   - {fileID: 1449252982}
   - {fileID: 899746553}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1204754431
 GameObject:
@@ -33752,7 +33775,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4349466908994110, guid: 52939b3fdcd5b004d9831b633ad1bea5, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114673798807978538, guid: 52939b3fdcd5b004d9831b633ad1bea5,
         type: 2}
@@ -34012,7 +34035,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1741371297
 MonoBehaviour:
@@ -36224,7 +36247,7 @@ Transform:
   - {fileID: 1891907495}
   - {fileID: 876496379}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1865201838
 Mesh:
@@ -39979,6 +40002,11 @@ Prefab:
         type: 2}
       propertyPath: mouseRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114172608697245118, guid: a5ab323a8cab41644876f6a159339a3b,
+        type: 2}
+      propertyPath: rotationSpeed
+      value: 1.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a5ab323a8cab41644876f6a159339a3b, type: 2}

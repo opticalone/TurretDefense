@@ -229,7 +229,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 114826298860208400, guid: b0a9c9dd9e13365459e80e4f5cb940fe,
+          type: 2}
         m_MethodName: BackToMenu
         m_Mode: 1
         m_Arguments:
