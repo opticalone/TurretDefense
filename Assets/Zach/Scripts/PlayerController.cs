@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour {
     public int slamTimerAmount;
     public float slamSpeed;
     public bool isSlamming;
-    public int attackTimerAmount;
+    public float attackTimerAmount;
     public bool isAttacking;
     public float strafeSpeed;
     public AnimationCurve brakeCurve;
@@ -31,8 +31,9 @@ public class PlayerController : MonoBehaviour {
     private bool jumpQueued;
     private bool slamQueued;
     private int slamTimer;
-    private int attackTimer;
+    private float attackTimer;
     private bool attackQueued;
+    private int smootherSpin;
 
 	//UI for gem pick up
 
@@ -93,10 +94,17 @@ public class PlayerController : MonoBehaviour {
             slamTimer = slamTimerAmount;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl) && !attackQueued)
+        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl) && !attackQueued && !isAttacking)
         {
             attackQueued = true;
             attackTimer = attackTimerAmount;
+            smootherSpin = 0;
+            if(!isAttacking)
+            {
+                isAttacking = true;
+                Attack();
+            }
+          
         }
     }
     float brakeTime;
@@ -173,8 +181,8 @@ public class PlayerController : MonoBehaviour {
         isSlamming = false;
         if (slamQueued) Slam();
 
-        isAttacking = false;
-        if (attackQueued) Attack();
+        
+      //  if (attackQueued) Attack();
     }
 
     //
@@ -199,35 +207,42 @@ public class PlayerController : MonoBehaviour {
     IEnumerator spin()
     {
         float t = 0;
+       
         Vector3 startRot = transform.forward;
         Vector3 desiredRot = Quaternion.AngleAxis( 90, Vector3.up) * transform.forward;
-        while(t < 1)
+        int rotCounter = 0;
+        while(rotCounter < 4)
         {
-            t += Time.deltaTime / attackTimer;
-            transform.forward = Vector3.Slerp(startRot, desiredRot, t);
+            while (t < 1)
+            {
+                t += Time.deltaTime * attackTimer;
+                transform.forward = Vector3.Slerp(startRot, desiredRot, t);
+                yield return null;
+            }
+            rotCounter++;
+            startRot = desiredRot;
+            desiredRot = Quaternion.AngleAxis(90, Vector3.up) * startRot;
+            t = 0;
             yield return null;
         }
 
+
         attackQueued = false;
         isAttacking = false;
+        //StopCoroutine(spin());
+        //transform.forward = orignalForward;
+        //smootherSpin++;
+        //if (smootherSpin < 18)
+        //{
+        //    StartCoroutine(spin());
+        //}
     }
 
 
     void Attack()
     {
-        StartCoroutine(spin()); // call 4 times
-
-
-        //if (attackTimer > 0)
-        //{
-        //    attackTimer--;
-        //    transform.Rotate(Vector3.up * (360 / attackTimerAmount));
-        //}
-        //else
-        //{
-        //    attackQueued = false;
-        //    isAttacking = false;
-        //}
+        StopCoroutine(spin());
+        StartCoroutine(spin());
     }
 
 	void OnTriggerEnter(Collider other) 
