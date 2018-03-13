@@ -6,11 +6,19 @@ public class GemSpin : MonoBehaviour {
 
 	public float rotationSpeed = 3.0f; 
 
+	[Range(-25,25)]
+	public float rotateX;
+	[Range(-25,25)]
+	public float rotateY;
+	[Range(-25,25)]
+	public float rotateZ;
+
+
 
 
 	// Update is called once per frame
 	void Update () {
-		transform.Rotate(new Vector3(0f, rotationSpeed, 0f));
+		transform.Rotate(new Vector3(rotateX, rotateY, rotateZ));
 
 	}
 }

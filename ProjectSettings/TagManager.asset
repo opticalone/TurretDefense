@@ -6,7 +6,12 @@ TagManager:
   tags:
   - Hunter
   - Lava
+<<<<<<< HEAD
   - Enemy
+=======
+  - Gem
+  - Pancake
+>>>>>>> dev
   layers:
   - Default
   - TransparentFX
