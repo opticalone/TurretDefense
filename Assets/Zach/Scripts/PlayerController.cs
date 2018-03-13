@@ -7,7 +7,9 @@ public class PlayerController : MonoBehaviour {
 
     float horizontal;
     float vertical;
+    float strafe;
     float jump;
+    float attack;
     Rigidbody rb;
 
     public Camera cam;
@@ -21,11 +23,16 @@ public class PlayerController : MonoBehaviour {
     public int slamTimerAmount;
     public float slamSpeed;
     public bool isSlamming;
+    public int attackTimerAmount;
+    public bool isAttacking;
+    public float strafeSpeed;
     public AnimationCurve brakeCurve;
 
     private bool jumpQueued;
     private bool slamQueued;
     private int slamTimer;
+    private int attackTimer;
+    private bool attackQueued;
 
 	//UI for gem pick up
 
@@ -46,7 +53,7 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         jumpQueued = false;
         slamQueued = false;
-      
+        attackTimer = 0;
 	}
     //bool sphereCastHit;
 	// Update is called once per frame
@@ -54,7 +61,14 @@ public class PlayerController : MonoBehaviour {
 
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
+        strafe = Input.GetAxis("Strafe");
         jump = Input.GetAxis("Jump");
+        attack = Input.GetAxis("Fire1");
+
+        if (attackTimer == 0)
+        {
+            attackQueued = false;
+        }
 
         //Drawing Raycast for player's jump to be seen in scene view
         Debug.DrawRay(transform.position, transform.up * -rayLength, Color.red, 0);
@@ -78,6 +92,12 @@ public class PlayerController : MonoBehaviour {
             slamQueued = true;
             slamTimer = slamTimerAmount;
         }
+
+        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl) && !attackQueued)
+        {
+            attackQueued = true;
+            attackTimer = attackTimerAmount;
+        }
     }
     float brakeTime;
     void FixedUpdate()
@@ -91,15 +111,36 @@ public class PlayerController : MonoBehaviour {
         Vector3 relativePos = -(cam.transform.position - transform.position);
         relativePos.y = 0;
         Quaternion rotation = Quaternion.LookRotation(relativePos);
-        transform.rotation = rotation;
+        if (!isAttacking)
+        {
+            transform.rotation = rotation;
+        }
 
 
         //movement
-        if (horizontal != 0 || vertical != 0)
+        if (vertical != 0 || strafe != 0)
         {
-            Vector3 desiredDir = targetDirection * movementSpeed;
-            desiredDir.y = rb.velocity.y;
-            rb.velocity = desiredDir;
+            Vector3 tempVector3 = new Vector3(0, rb.velocity.y, 0);
+            rb.velocity = tempVector3;
+            if (vertical != 0)
+            {
+                Vector3 desiredDir = targetDirection * movementSpeed;
+                desiredDir.y = rb.velocity.y;
+                rb.velocity = desiredDir;
+            }
+            if (strafe != 0 && !isAttacking)
+            {
+                if (strafe > 0)
+                {
+                    Vector3 temp = transform.right;
+                    rb.velocity += temp * strafeSpeed;
+                }
+                if (strafe < 0)
+                {
+                    Vector3 temp = -transform.right;
+                    rb.velocity += temp * strafeSpeed;
+                }
+            }
         }
         else //less slide on stop
         {
@@ -127,8 +168,13 @@ public class PlayerController : MonoBehaviour {
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (shortHopMultiplier) * Time.deltaTime;
         }
+
+
         isSlamming = false;
         if (slamQueued) Slam();
+
+        isAttacking = false;
+        if (attackQueued) Attack();
     }
 
     //
@@ -148,6 +194,42 @@ public class PlayerController : MonoBehaviour {
             isSlamming = true;
         }
     }
+
+
+    IEnumerator spin()
+    {
+        float t = 0;
+        Vector3 startRot = transform.forward;
+        Vector3 desiredRot = Quaternion.AngleAxis( 90, Vector3.up) * transform.forward;
+        while(t < 1)
+        {
+            t += Time.deltaTime / attackTimer;
+            transform.forward = Vector3.Slerp(startRot, desiredRot, t);
+            yield return null;
+        }
+
+        attackQueued = false;
+        isAttacking = false;
+    }
+
+
+    void Attack()
+    {
+        StartCoroutine(spin()); // call 4 times
+
+
+        //if (attackTimer > 0)
+        //{
+        //    attackTimer--;
+        //    transform.Rotate(Vector3.up * (360 / attackTimerAmount));
+        //}
+        //else
+        //{
+        //    attackQueued = false;
+        //    isAttacking = false;
+        //}
+    }
+
 	void OnTriggerEnter(Collider other) 
 	{
 		if (other.gameObject.CompareTag ("Gem"))
