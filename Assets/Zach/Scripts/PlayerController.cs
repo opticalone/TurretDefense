@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour {
     public AnimationCurve brakeCurve;
     public bool devJump;
     public GameObject Gravestone;
+    public GameObject gems;
+    public float gemSpawnRadius;
 
     private bool jumpQueued;
     private bool slamQueued;
@@ -290,7 +292,14 @@ public class PlayerController : MonoBehaviour {
             }
             else if (gemsTotal > 0)
             {
+                for (int i = gemsTotal; i > 0; i--)
+                {
+                    GameObject spawnedGem = Instantiate(gems);
+                    Vector3 temp = new Vector3(transform.position.x + Random.Range(gemSpawnRadius, gemSpawnRadius), transform.position.y, transform.position.z + Random.Range(gemSpawnRadius, gemSpawnRadius));
+                    spawnedGem.transform.position = temp;
+                }
                 gemsTotal = 0;
+                GemCount.text = gemsTotal.ToString();
             }
             else if (gemsTotal == 0)
             {
