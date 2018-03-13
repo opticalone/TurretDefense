@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour {
     public bool isAttacking;
     public float strafeSpeed;
     public AnimationCurve brakeCurve;
+    public bool devJump;
 
     private bool jumpQueued;
     private bool slamQueued;
@@ -55,6 +56,7 @@ public class PlayerController : MonoBehaviour {
         jumpQueued = false;
         slamQueued = false;
         attackTimer = 0;
+        devJump = false;
 	}
     //bool sphereCastHit;
 	// Update is called once per frame
@@ -105,6 +107,11 @@ public class PlayerController : MonoBehaviour {
                 Attack();
             }
           
+        }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            devJump = true;
         }
     }
     float brakeTime;
@@ -181,8 +188,13 @@ public class PlayerController : MonoBehaviour {
         isSlamming = false;
         if (slamQueued) Slam();
 
-        
-      //  if (attackQueued) Attack();
+
+        if (devJump)
+        {
+            Vector3 temp = new Vector3(rb.velocity.x, jumpStrength, rb.velocity.z);
+            rb.velocity = temp;
+            devJump = false;
+        }
     }
 
     //
@@ -226,16 +238,31 @@ public class PlayerController : MonoBehaviour {
             yield return null;
         }
 
-
         attackQueued = false;
         isAttacking = false;
-        //StopCoroutine(spin());
-        //transform.forward = orignalForward;
-        //smootherSpin++;
-        //if (smootherSpin < 18)
-        //{
-        //    StartCoroutine(spin());
-        //}
+    }
+
+    IEnumerator flip()
+    {
+        float t = 0;
+
+        Vector3 startRot = transform.forward;
+        Vector3 desiredRot = Quaternion.AngleAxis(90, Vector3.right) * transform.forward;
+        int rotCounter = 0;
+        while (rotCounter < 4)
+        {
+            while (t < 1)
+            {
+                t += Time.deltaTime * slamTimer;
+                transform.forward = Vector3.Slerp(startRot, desiredRot, t);
+                yield return null;
+            }
+            rotCounter++;
+            startRot = desiredRot;
+            desiredRot = Quaternion.AngleAxis(90, Vector3.right) * startRot;
+            t = 0;
+            yield return null;
+        }
     }
 
 
