@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Node : MonoBehaviour {
+public class Node : MonoBehaviour 
+{
 
 	[Header("c o l o r s")]
+
 	private Color StartColor;
 	public Color HoverColor;
 
@@ -27,8 +29,12 @@ public class Node : MonoBehaviour {
 			return;
 		}
 		//build a turret
-
+		GameObject turretToBuild = BuildManager.instance.GetTurretToBuild();
+		turret =(GameObject)Instantiate (turretToBuild, transform.position, transform.rotation);
 	}
+
+
+
 	void OnMouseEnter()
 	{
 		rend.material.color = HoverColor;

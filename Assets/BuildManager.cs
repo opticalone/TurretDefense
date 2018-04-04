@@ -31,8 +31,8 @@ public class BuildManager : MonoBehaviour
 
 	private GameObject turretToBuild;
 
-	//public GameObject GetTurretToBuild()
-	//{
-	//	return GetTurretToBuild;
-	//}
+	public GameObject GetTurretToBuild()
+	{
+		return turretToBuild;
+	}
 }
