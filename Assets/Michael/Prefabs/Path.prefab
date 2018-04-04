@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1051063495928694}
+  m_IsPrefabParent: 1
+--- !u!1 &1051063495928694
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4795692405934926}
+  - component: {fileID: 114293885049091884}
+  m_Layer: 0
+  m_Name: Path
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4795692405934926
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1051063495928694}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.3, y: 12.9, z: -21.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114293885049091884
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1051063495928694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d37e5385efd7064cb1d54c94960acae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Resolution: 20
+  m_Appearance:
+    pathColor: {r: 0, g: 1, b: 0, a: 1}
+    inactivePathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    width: 0.2
+  m_Looped: 1
+  m_Waypoints:
+  - position: {x: -15.27, y: 10.31, z: -1.2907581}
+    tangent: {x: 7.540356, y: -0.12252903, z: 0}
+    roll: 0
+  - position: {x: 5.833762, y: 17.04, z: 8.117491}
+    tangent: {x: 5.838949, y: -0.4537163, z: 0.2872162}
+    roll: -45
+  - position: {x: 20, y: -0.5047379, z: -0.6248589}
+    tangent: {x: 7.24297, y: -0.005663872, z: 1.806755}
+    roll: 30
+  - position: {x: 29.446022, y: -6.1275883, z: 11.930257}
+    tangent: {x: 1.245777, y: -0.9081688, z: 6.846738}
+    roll: 30
+  - position: {x: 23.41989, y: 0, z: 38.23446}
+    tangent: {x: -8.727499, y: -0.05312538, z: 8.269756}
+    roll: 16.41
+  - position: {x: -14.884913, y: -1.2871857, z: 36.981667}
+    tangent: {x: -9.707009, y: 0, z: -4.263275}
+    roll: 40
+  - position: {x: -26.01329, y: 0, z: 10.762024}
+    tangent: {x: 4.519011, y: 0, z: -11.064621}
+    roll: 30

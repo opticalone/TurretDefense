@@ -12,6 +12,11 @@ public class PlayerController : MonoBehaviour {
     float attack;
     Rigidbody rb;
 
+	public Vector3 mouseRotation = new Vector3(45, 90, 0);
+	public float rotationSpeed;
+	public bool keyboardOnly;
+	public float xAngle;
+
     public Camera cam;
     public float movementSpeed;
     public float jumpStrength;
@@ -76,6 +81,11 @@ public class PlayerController : MonoBehaviour {
             attackQueued = false;
         }
 
+		//if(horizontal)
+		//	{
+		//	mouseRotation.x = xAngle;
+		//	mouseRotation.y += Input.GetAxis("Horizontal") * rotationSpeed;
+		//	}
         //Drawing Raycast for player's jump to be seen in scene view
         Debug.DrawRay(transform.position, transform.up * -rayLength, Color.red, 0);
 
