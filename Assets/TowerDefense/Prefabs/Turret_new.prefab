@@ -3176,7 +3176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 15
-  fireRate: 5.04
+  fireRate: 10.08
   enemyTag: Enemy
   partToRotate: {fileID: 4457627478264858}
   bulletPrefab: {fileID: 1675751070606590, guid: eba7bb06c6bbe6d4d9db98c44c63efa2,
